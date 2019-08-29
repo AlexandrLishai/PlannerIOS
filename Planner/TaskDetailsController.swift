@@ -11,8 +11,25 @@ import UIKit
 class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var task:Task!
+    var delegate:ActionResultDelegate!
+    
+    var textTaskName:UITextField!
     
     private var dateFormatter = DateFormatter()
+    
+    
+    @IBAction func clickCancel(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    @IBAction func clickSave(_ sender: UIBarButtonItem) {
+        task.name = textTaskName.text
+        
+        delegate.done(source: self, data: task)
+        
+        navigationController?.popViewController(animated: true)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
@@ -32,6 +49,8 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             cell.textTaskName.text = task.name
+            
+            textTaskName = cell.textTaskName
             
             return cell
         case 1:

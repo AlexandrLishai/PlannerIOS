@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskListController: UITableViewController {
+class TaskListController: UITableViewController, ActionResultDelegate {
     
     private var dateFormatter = DateFormatter()
     
@@ -191,10 +191,22 @@ class TaskListController: UITableViewController {
             
             controller.title = "Edit"
             controller.task = selectedTask
+            controller.delegate = self
         default:
             return
         }
     
 
+    }
+    
+    // MARK: action 
+    
+    func done(source: UIViewController, data: Any?) {
+        if source is TaskDetailsController{
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                taskDAO.save()
+                tableView.reloadRows(at: [selectedIndexPath], with: .fade)
+            }
+        }
     }
 }

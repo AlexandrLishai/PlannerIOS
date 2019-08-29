@@ -92,7 +92,10 @@
                             <outlet property="delegate" destination="c9C-AU-1Ct" id="ePv-Hw-Yth"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Irw-BN-PVn"/>
+                    <navigationItem key="navigationItem" id="Irw-BN-PVn">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="KOY-BS-TM2"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gwZ-di-aHT"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNF-aN-MOj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -274,6 +277,18 @@
                             <constraint firstItem="tPW-3i-KrP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zgh-1N-cIH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="eez-AK-bAd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wTP-6Y-8MB">
+                            <connections>
+                                <action selector="clickCancel:" destination="BYZ-38-t0r" id="xWU-o8-oIF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="J0c-vK-Jp1">
+                            <connections>
+                                <action selector="clickSave:" destination="BYZ-38-t0r" id="KEX-Bs-mzk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,6 +12,7 @@
 		FA1793902317F54A002CEE61 /* TaskPriorityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17938F2317F54A002CEE61 /* TaskPriorityViewCell.swift */; };
 		FA1793922317F56A002CEE61 /* TaskDeadlineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1793912317F56A002CEE61 /* TaskDeadlineViewCell.swift */; };
 		FA1793942317F57D002CEE61 /* TaskInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1793932317F57D002CEE61 /* TaskInfoViewCell.swift */; };
+		FA17939723181CFE002CEE61 /* ActionResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17939623181CFE002CEE61 /* ActionResultDelegate.swift */; };
 		FA253A8722FC302500544F76 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA253A8622FC302500544F76 /* TaskListController.swift */; };
 		FA253A8A22FC508300544F76 /* TaskObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA253A8922FC508300544F76 /* TaskObject.swift */; };
 		FA437E1122F99877003F00D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA437E1022F99877003F00D1 /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		FA17938F2317F54A002CEE61 /* TaskPriorityViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPriorityViewCell.swift; sourceTree = "<group>"; };
 		FA1793912317F56A002CEE61 /* TaskDeadlineViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDeadlineViewCell.swift; sourceTree = "<group>"; };
 		FA1793932317F57D002CEE61 /* TaskInfoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInfoViewCell.swift; sourceTree = "<group>"; };
+		FA17939623181CFE002CEE61 /* ActionResultDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionResultDelegate.swift; sourceTree = "<group>"; };
 		FA253A8622FC302500544F76 /* TaskListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
 		FA253A8922FC508300544F76 /* TaskObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskObject.swift; sourceTree = "<group>"; };
 		FA437E0D22F99877003F00D1 /* Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA17939523181CD9002CEE61 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FA17939623181CFE002CEE61 /* ActionResultDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		FA253A8322FC2D7000544F76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 		FA437E0F22F99877003F00D1 /* Planner */ = {
 			isa = PBXGroup;
 			children = (
+				FA17939523181CD9002CEE61 /* Delegates */,
 				FA96FE88230D87C400C897F9 /* DaoImpl */,
 				FA96FE87230D87AD00C897F9 /* DAO */,
 				FA5CFC7223057BEC008CF621 /* Extensions */,
@@ -386,6 +397,7 @@
 				FA437E1122F99877003F00D1 /* AppDelegate.swift in Sources */,
 				FA17938E2317DE57002CEE61 /* TaskCategoryViewCell.swift in Sources */,
 				FA5CFC7623057E0A008CF621 /* TaskExtension.swift in Sources */,
+				FA17939723181CFE002CEE61 /* ActionResultDelegate.swift in Sources */,
 				FA96FE94230D909D00C897F9 /* PriorityDAOImpl.swift in Sources */,
 				FAE84DC8230E724B000D2DD8 /* Crud.swift in Sources */,
 				FA253A8722FC302500544F76 /* TaskListController.swift in Sources */,
