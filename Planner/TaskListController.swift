@@ -25,7 +25,7 @@ class TaskListController: UITableViewController {
         dateFormatter.timeStyle = .none
         dateFormatter.dateStyle = .short
         
-        //initData()
+        //taskDAO.initData()
         
         list = taskDAO.getAll()
 
@@ -37,19 +37,7 @@ class TaskListController: UITableViewController {
     }
     
     
-    //func initData(){
-    //    let category1 = addCategory(name: "Sport")
-    //    let category2 = addCategory(name: "Rest")
-    //    let category3 = addCategory(name: "Family")
-        
-    //    let priority1 = addPriority(name: "Low", index: 1)
-    //    let priority2 = addPriority(name: "Normal", index: 2)
-    //    let priority3 = addPriority(name: "High", index: 3)
-        
-     //   _ = addTask(name: "Go to swimming pool", completed: false, deadline: Date().rewindDays(days: 10), info: "info", category: category1, priority: priority1)
-     //   _ = addTask(name: "Go to park", completed: false, deadline: Date().rewindDays(days: -5), info: "info", category: category2, priority: priority2)
-      //  _ = addTask(name: "Shopping", completed: false, deadline: Date().rewindDays(days: 1), info: "info", category: category3, priority: priority3)
-    //}
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -182,14 +170,31 @@ class TaskListController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+        switch segue.identifier! {
+        case "editTask":
+            let selectedCell = sender as! TaskListViewCell
+            
+            let selectedIndex = (tableView.indexPath(for: selectedCell)?.row)!
+            
+            let selectedTask = taskDAO.items[selectedIndex]
+            
+            guard let controller = segue.destination as? TaskDetailsController else{
+                fatalError("error")
+            }
+            
+            controller.title = "Edit"
+            controller.task = selectedTask
+        default:
+            return
+        }
+    
 
+    }
 }
