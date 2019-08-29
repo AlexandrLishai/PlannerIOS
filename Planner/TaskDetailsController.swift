@@ -12,25 +12,123 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     var task:Task!
     
+    private var dateFormatter = DateFormatter()
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskDetails", for: indexPath) as! UITableViewCell
         
-        cell.textLabel?.text = task.name
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskName", for: indexPath) as? TaskNameViewCell else{
+                fatalError("error")
+            }
+            
+            cell.textTaskName.text = task.name
+            
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskCategory", for: indexPath) as? TaskCategoryViewCell else{
+                fatalError("error")
+            }
+            
+            var value:String
+            
+            if let name = task.category?.name{
+                value = name
+            }else{
+                value = "not chosen"
+            }
+            
+            
+            cell.labelTaskCategory.text = value
+            
+            return cell
+            
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskPriority", for: indexPath) as? TaskPriorityViewCell else{
+                fatalError("error")
+            }
+            
+            var value:String
+            
+            if let name = task.priority?.name{
+                value = name
+            }else{
+                value = "not chosen"
+            }
+            
+            
+            cell.labelTaskPriority.text = value
+            
+            return cell
+            
+        case 3:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskDeadline", for: indexPath) as? TaskDeadlineViewCell else{
+                fatalError("error")
+            }
+            
+            var value:String
+            
+            if let name = task.deadline{
+                value = dateFormatter.string(from: name as Date)
+            }else{
+                value = "not chosen"
+            }
+            
+            
+            cell.labelTaskDeadline.text = value
+            
+            return cell
+            
+        case 4:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskInfo", for: indexPath) as? TaskInfoViewCell else{
+                fatalError("error")
+            }
+            
+            cell.textTaskInfo.text = task.info
+            
+            return cell
+            
+        default:
+            return UITableViewCell()
+        }
         
-        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Name"
+        case 1:
+            return "Category"
+        case 2:
+            return "Priority"
+        case 3:
+            return "Deadline"
+        case 4:
+            return "Info"
+        default:
+            return ""
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 0...10000 {
-            print(i)
-        }
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .short
+        
+        //for i in 0...10000 {
+        //    print(i)
+        //}
         // Do any additional setup after loading the view, typically from a nib.
     }
 
