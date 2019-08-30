@@ -8,14 +8,51 @@
 
 import UIKit
 
-class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewDataSource, ActionResultDelegate {
     
     var task:Task!
     var delegate:ActionResultDelegate!
     
+    var taskName:String?
+    var taskInfo:String?
+    var taskPriority:Priority?
+    var taskCategory:Category?
+    var taskDeadline:Date?
+    
     var textTaskName:UITextField!
+    var textTaskInfo:UITextView!
+    
+    let taskDAO = TaskDAOImpl.current
     
     private var dateFormatter = DateFormatter()
+    
+    @IBOutlet weak var tableViewTaskDetails: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .short
+        
+        if let task = task{ // если объект не пустой (значит режим редактирования, а не создания новой задачи)
+            taskName = task.name
+            taskInfo = task.info
+            taskPriority = task.priority
+            taskCategory = task.category
+            taskDeadline = task.deadline as! Date
+        }
+        
+        //for i in 0...10000 {
+        //    print(i)
+        //}
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     
     
     @IBAction func clickCancel(_ sender: UIBarButtonItem) {
@@ -24,7 +61,11 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBAction func clickSave(_ sender: UIBarButtonItem) {
-        task.name = textTaskName.text
+        
+        task.name = taskName
+        task.category = taskCategory
+        task.info = taskInfo
+        
         
         delegate.done(source: self, data: task)
         
@@ -60,10 +101,12 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             var value:String
             
-            if let name = task.category?.name{
+            if let name = taskCategory?.name{
                 value = name
+                cell.labelTaskCategory.textColor = UIColor.darkText
             }else{
                 value = "not chosen"
+                cell.labelTaskCategory.textColor = UIColor.lightGray
             }
             
             
@@ -114,6 +157,8 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.textTaskInfo.text = task.info
             
+            textTaskInfo = cell.textTaskInfo
+            
             return cell
             
         default:
@@ -139,23 +184,41 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        switch segue.identifier! {
+        case "selectCategory":
+            
+            guard let controller = segue.destination as? CategoryListController else{
+                fatalError("error")
+            }
+            
+            controller.title = "Choose category"
+            controller.currentCategory = taskCategory
+            controller.delegate = self            
+        default:
+            return
+        }
         
-        dateFormatter.timeStyle = .none
-        dateFormatter.dateStyle = .short
         
-        //for i in 0...10000 {
-        //    print(i)
-        //}
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: action
+    
+    func done(source: UIViewController, data: Any?) {
+        if source is CategoryListController{
+            if let selectedIndexPath = tableViewTaskDetails.indexPathForSelectedRow{
+                taskCategory = data as! Category
+                tableViewTaskDetails.reloadRows(at: [selectedIndexPath], with: .fade)
+            }
+        }
     }
-
+    
+    
 
 }
 
