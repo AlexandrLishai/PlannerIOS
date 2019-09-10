@@ -37,6 +37,10 @@ class TaskDAOImpl: Crud{
         return items
     }
     
+    func getName(_ item: Task) -> String {
+        return item.name!
+    }
+    
     func delete(_ item:Item){
         context.delete(item)
         save()

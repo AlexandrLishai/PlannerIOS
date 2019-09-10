@@ -46,4 +46,8 @@ class PriorityDAOImpl: Crud{
         save()
     }
     
+    func getName(_ item: Priority) -> String {
+        return item.name!
+    }
+    
 }

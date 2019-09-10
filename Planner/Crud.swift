@@ -21,4 +21,6 @@ protocol Crud {
     
     func delete(_ item:Item)
     
+    func getName(_ item:Item) -> String
+    
 }

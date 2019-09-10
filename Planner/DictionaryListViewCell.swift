@@ -1,16 +1,17 @@
 //
-//  CategoryListViewCell.swift
+//  DictionaryListViewCell.swift
 //  Planner
 //
-//  Created by alex on 8/30/19.
+//  Created by alex on 9/5/19.
 //  Copyright © 2019 alex. All rights reserved.
 //
 
 import UIKit
 
-class CategoryListViewCell: UITableViewCell {
+class DictionaryListViewCell: UITableViewCell {
 
-    @IBOutlet weak var labelCategoryName: UILabel!
+    @IBOutlet weak var labelDictionaryName: UILabel!
+    
     @IBOutlet weak var buttonCheck: UIButton!
     
     override func awakeFromNib() {
@@ -23,7 +24,5 @@ class CategoryListViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
 
 }

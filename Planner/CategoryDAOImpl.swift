@@ -46,4 +46,8 @@ class CategoryDAOImpl: Crud{
         save()
     }
     
+    func getName(_ item: Category) -> String {
+        return item.name!
+    }
+    
 }

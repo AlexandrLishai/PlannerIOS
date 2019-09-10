@@ -19,8 +19,11 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     var taskCategory:Category?
     var taskDeadline:Date?
     
-    var textTaskName:UITextField!
-    var textTaskInfo:UITextView!
+    let taskNameSection = 0
+    let taskCategorySection = 1
+    let taskPrioritySection = 2
+    let taskDeadlineSection = 3
+    let taskInfoSection = 4
     
     let taskDAO = TaskDAOImpl.current
     
@@ -39,7 +42,7 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             taskInfo = task.info
             taskPriority = task.priority
             taskCategory = task.category
-            taskDeadline = task.deadline as! Date
+            taskDeadline = task.deadline as? Date
         }
         
         //for i in 0...10000 {
@@ -64,6 +67,7 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         
         task.name = taskName
         task.category = taskCategory
+        task.priority = taskPriority
         task.info = taskInfo
         
         
@@ -84,17 +88,15 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case 0:
+        case taskNameSection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskName", for: indexPath) as? TaskNameViewCell else{
                 fatalError("error")
             }
             
-            cell.textTaskName.text = task.name
-            
-            textTaskName = cell.textTaskName
+            cell.textTaskName.text = taskName
             
             return cell
-        case 1:
+        case taskCategorySection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskCategory", for: indexPath) as? TaskCategoryViewCell else{
                 fatalError("error")
             }
@@ -114,14 +116,14 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             return cell
             
-        case 2:
+        case taskPrioritySection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskPriority", for: indexPath) as? TaskPriorityViewCell else{
                 fatalError("error")
             }
             
             var value:String
             
-            if let name = task.priority?.name{
+            if let name = taskPriority?.name{
                 value = name
             }else{
                 value = "not chosen"
@@ -132,14 +134,14 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             return cell
             
-        case 3:
+        case taskDeadlineSection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskDeadline", for: indexPath) as? TaskDeadlineViewCell else{
                 fatalError("error")
             }
             
             var value:String
             
-            if let name = task.deadline{
+            if let name = taskDeadline{
                 value = dateFormatter.string(from: name as Date)
             }else{
                 value = "not chosen"
@@ -150,14 +152,13 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             return cell
             
-        case 4:
+        case taskInfoSection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskInfo", for: indexPath) as? TaskInfoViewCell else{
                 fatalError("error")
             }
             
-            cell.textTaskInfo.text = task.info
+            cell.textTaskInfo.text = taskInfo
             
-            textTaskInfo = cell.textTaskInfo
             
             return cell
             
@@ -169,15 +170,15 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
+        case taskNameSection:
             return "Name"
-        case 1:
+        case taskCategorySection:
             return "Category"
-        case 2:
+        case taskPrioritySection:
             return "Priority"
-        case 3:
+        case taskDeadlineSection:
             return "Deadline"
-        case 4:
+        case taskInfoSection:
             return "Info"
         default:
             return ""
@@ -193,13 +194,29 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         switch segue.identifier! {
         case "selectCategory":
             
-            guard let controller = segue.destination as? CategoryListController else{
-                fatalError("error")
-            }
+            let title = "Choose category"
+            let dictionary = Dictionary<CategoryDAOImpl>()
+            dictionary.currentItem = taskCategory
+            dictionary.currentDAO = CategoryDAOImpl.current
+            dictionary.dictionaryList = CategoryDAOImpl.current.getAll()
+            dictionary.delegate = self
+            let controller = segue.destination as? CategoryListController
+            controller?.title = title
+            controller?.currentDictionary = dictionary
             
-            controller.title = "Choose category"
-            controller.currentCategory = taskCategory
-            controller.delegate = self            
+            
+            
+        case "selectPriority":
+            let title = "Choose priority"
+            let dictionary = Dictionary<PriorityDAOImpl>()
+            dictionary.currentItem = taskPriority
+            dictionary.currentDAO = PriorityDAOImpl.current
+            dictionary.dictionaryList = PriorityDAOImpl.current.getAll()
+            dictionary.delegate = self
+            let controller = segue.destination as? PriorityListController
+            controller?.title = title
+            controller?.currentDictionary = dictionary
+
         default:
             return
         }
@@ -210,12 +227,17 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: action
     
     func done(source: UIViewController, data: Any?) {
-        if source is CategoryListController{
-            if let selectedIndexPath = tableViewTaskDetails.indexPathForSelectedRow{
-                taskCategory = data as! Category
-                tableViewTaskDetails.reloadRows(at: [selectedIndexPath], with: .fade)
+        
+        if let selectedIndexPath = tableViewTaskDetails.indexPathForSelectedRow{
+            if source is CategoryListController{
+                taskCategory = data as? Category
             }
+            if source is PriorityListController{
+                taskPriority = data as? Priority
+            }
+            tableViewTaskDetails.reloadRows(at: [selectedIndexPath], with: .fade)
         }
+        
     }
     
     

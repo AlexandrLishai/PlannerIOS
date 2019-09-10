@@ -1,17 +1,18 @@
 //
-//  CategoryListController.swift
+//  PriorityListController.swift
 //  Planner
 //
-//  Created by alex on 9/4/19.
+//  Created by alex on 8/30/19.
 //  Copyright © 2019 alex. All rights reserved.
 //
+
 
 import Foundation
 import UIKit
 
-class CategoryListController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class PriorityListController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var currentDictionary:Dictionary<CategoryDAOImpl>!
+    var currentDictionary:Dictionary<PriorityDAOImpl>!
     
     @IBOutlet weak var tableViewDictionaryList: UITableView!
     
@@ -93,7 +94,7 @@ class CategoryListController: UIViewController, UITableViewDelegate, UITableView
         
         navigationController?.popViewController(animated: true)
     }
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -116,5 +117,5 @@ class CategoryListController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
-        
+    
 }
