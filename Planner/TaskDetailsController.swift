@@ -17,7 +17,7 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     var taskInfo:String?
     var taskPriority:Priority?
     var taskCategory:Category?
-    var taskDeadline:Date?
+    var taskDeadline:NSDate?
     
     let taskNameSection = 0
     let taskCategorySection = 1
@@ -31,6 +31,11 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableViewTaskDetails: UITableView!
     
+    
+    @IBOutlet weak var buttonDeleteTask: UIButton!
+    
+    @IBOutlet weak var buttonCompleteTask: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,12 +47,13 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             taskInfo = task.info
             taskPriority = task.priority
             taskCategory = task.category
-            taskDeadline = task.deadline as? Date
+            taskDeadline = task.deadline
         }
         
-        //for i in 0...10000 {
-        //    print(i)
-        //}
+        buttonDeleteTask.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)        
+        buttonCompleteTask.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        
+                
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -68,12 +74,20 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         task.name = taskName
         task.category = taskCategory
         task.priority = taskPriority
+        task.deadline = taskDeadline
         task.info = taskInfo
         
         
         delegate.done(source: self, data: task)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    @IBAction func clickButtonClear(_ sender: AreaTabButton) {
+        taskDeadline = nil
+        
+        tableViewTaskDetails.reloadRows(at: [IndexPath(row: 0, section: taskDeadlineSection)], with: .fade)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -143,8 +157,10 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             if let name = taskDeadline{
                 value = dateFormatter.string(from: name as Date)
+                cell.buttonClearDeadline.isHidden = false
             }else{
                 value = "not chosen"
+                cell.buttonClearDeadline.isHidden = true
             }
             
             

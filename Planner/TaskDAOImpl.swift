@@ -16,7 +16,9 @@ class TaskDAOImpl: Crud{
     
     static let current = TaskDAOImpl()
     
-    private init(){}
+    private init(){
+        getAll()
+    }
     
     let categoryDAO = CategoryDAOImpl.current
     let priorityDAO = PriorityDAOImpl.current

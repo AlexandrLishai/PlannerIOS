@@ -17,7 +17,8 @@ class TaskListController: UITableViewController, ActionResultDelegate {
     let categoryDAO = CategoryDAOImpl.current
     let priorityDAO = PriorityDAOImpl.current
     
-    private var list:[Task]!
+    
+    //@IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         
         //taskDAO.initData()
         
-        list = taskDAO.getAll()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -54,7 +54,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return list.count
+        return taskDAO.items.count
     }
 
     
@@ -63,7 +63,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
             fatalError("cell error")
         }
 
-        let task = list[indexPath.row]
+        let task = taskDAO.items[indexPath.row]
         
         cell.labelTaskName.text = task.name
         cell.labelTaskCategory.text = (task.category?.name ?? "")
@@ -125,10 +125,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if (editingStyle == .delete){
-            taskDAO.delete(list[indexPath.row])
-            
-            list.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .top)
+            deleteTask(indexPath)
         }else if (editingStyle == .insert){
             // insert
         }
@@ -209,4 +206,21 @@ class TaskListController: UITableViewController, ActionResultDelegate {
             }
         }
     }
+    
+    @IBAction func deleteTaskAction(segue: UIStoryboardSegue) {
+        guard segue.source is TaskDetailsController else{
+            fatalError("error")
+        }
+        
+        if segue.identifier == "DeleteTaskFromDetails" , let selectedIndexPath = tableView.indexPathForSelectedRow{
+            deleteTask(selectedIndexPath)
+        }
+    }
+    
+    func deleteTask(_ indexPath:IndexPath){
+        taskDAO.delete(taskDAO.items[indexPath.row])
+        taskDAO.items.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .top)
+    }
+    
 }

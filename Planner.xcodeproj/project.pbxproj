@@ -25,6 +25,7 @@
 		FA5C86E22319587900854238 /* PriorityListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C86E12319587900854238 /* PriorityListController.swift */; };
 		FA5CFC7423057C56008CF621 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CFC7323057C56008CF621 /* DateExtension.swift */; };
 		FA5CFC7623057E0A008CF621 /* TaskExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CFC7523057E0A008CF621 /* TaskExtension.swift */; };
+		FA79DB982327AAEC00337796 /* AreaTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79DB972327AAEC00337796 /* AreaTabButton.swift */; };
 		FA85E52022FD4C1F00589C31 /* TaskListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85E51F22FD4C1F00589C31 /* TaskListViewCell.swift */; };
 		FA8EB41322FD6BDB00BA867E /* Planner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA8EB41122FD6BDB00BA867E /* Planner.xcdatamodeld */; };
 		FA96FE8C230D880B00C897F9 /* TaskDAOImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96FE8B230D880B00C897F9 /* TaskDAOImpl.swift */; };
@@ -79,6 +80,7 @@
 		FA5C86E12319587900854238 /* PriorityListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityListController.swift; sourceTree = "<group>"; };
 		FA5CFC7323057C56008CF621 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		FA5CFC7523057E0A008CF621 /* TaskExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskExtension.swift; sourceTree = "<group>"; };
+		FA79DB972327AAEC00337796 /* AreaTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaTabButton.swift; sourceTree = "<group>"; };
 		FA85E51F22FD4C1F00589C31 /* TaskListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewCell.swift; sourceTree = "<group>"; };
 		FA8EB41222FD6BDB00BA867E /* Planner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Planner.xcdatamodel; sourceTree = "<group>"; };
 		FA96FE8B230D880B00C897F9 /* TaskDAOImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDAOImpl.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		FA437E0F22F99877003F00D1 /* Planner */ = {
 			isa = PBXGroup;
 			children = (
+				FA79DB962327AA9F00337796 /* UIViews */,
 				FA17939523181CD9002CEE61 /* Delegates */,
 				FA96FE88230D87C400C897F9 /* DaoImpl */,
 				FA96FE87230D87AD00C897F9 /* DAO */,
@@ -226,6 +229,14 @@
 				FAE84DC9230E7612000D2DD8 /* CrudExtension.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		FA79DB962327AA9F00337796 /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA79DB972327AAEC00337796 /* AreaTabButton.swift */,
+			);
+			name = UIViews;
 			sourceTree = "<group>";
 		};
 		FA85E51E22FD4B6B00589C31 /* Cells */ = {
@@ -396,6 +407,7 @@
 			files = (
 				FA85E52022FD4C1F00589C31 /* TaskListViewCell.swift in Sources */,
 				FA5CFC7423057C56008CF621 /* DateExtension.swift in Sources */,
+				FA79DB982327AAEC00337796 /* AreaTabButton.swift in Sources */,
 				FA253A8A22FC508300544F76 /* TaskObject.swift in Sources */,
 				FA8EB41322FD6BDB00BA867E /* Planner.xcdatamodeld in Sources */,
 				FA1793922317F56A002CEE61 /* TaskDeadlineViewCell.swift in Sources */,
