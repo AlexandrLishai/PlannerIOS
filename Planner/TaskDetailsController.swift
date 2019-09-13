@@ -94,6 +94,15 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         return 5
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case taskInfoSection:
+            return 120
+        default:
+            return 60
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
@@ -166,12 +175,14 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.labelTaskDeadline.text = value
             
+            
             return cell
             
         case taskInfoSection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTaskInfo", for: indexPath) as? TaskInfoViewCell else{
                 fatalError("error")
             }
+            
             
             cell.textTaskInfo.text = taskInfo
             
@@ -232,7 +243,12 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             let controller = segue.destination as? PriorityListController
             controller?.title = title
             controller?.currentDictionary = dictionary
-
+            
+        case "EditTaskInfo":
+            if let controller = segue.destination as? EditTaskInfoController{
+                controller.taskInfo = taskInfo
+                controller.delegate = self
+            }
         default:
             return
         }
@@ -251,8 +267,15 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             if source is PriorityListController{
                 taskPriority = data as? Priority
             }
+            
             tableViewTaskDetails.reloadRows(at: [selectedIndexPath], with: .fade)
         }
+        
+        if source is EditTaskInfoController{
+            taskInfo = data as? String
+            tableViewTaskDetails.reloadRows(at: [IndexPath(row: 0, section: taskInfoSection)], with: .fade)
+        }
+        
         
     }
     

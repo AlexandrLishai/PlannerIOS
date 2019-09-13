@@ -240,12 +240,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-KE-RU3">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-KE-RU3">
                                                     <rect key="frame" x="10" y="5" width="323" height="109.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <gestureRecognizers/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="dsf-Vt-gGD" appends="YES" id="ilY-ZT-xNK"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -320,6 +324,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="y7i-BE-fUB" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="dsf-Vt-gGD">
+                    <connections>
+                        <segue destination="dle-yh-Nci" kind="show" identifier="EditTaskInfo" id="O19-Xq-rZJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="829.60000000000002" y="-158.77061469265368"/>
         </scene>
@@ -431,6 +440,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldf-dM-C6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-802.39999999999998" y="-158.77061469265368"/>
+        </scene>
+        <!--Edit Task Info-->
+        <scene sceneID="aGb-Bp-L4d">
+            <objects>
+                <viewController id="dle-yh-Nci" customClass="EditTaskInfoController" customModule="Planner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2w9-is-O6r"/>
+                        <viewControllerLayoutGuide type="bottom" id="RaR-6C-UTg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="075-0g-Hej">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xnb-HH-rbA">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xnb-HH-rbA" secondAttribute="trailing" id="O8A-Vx-if5"/>
+                            <constraint firstItem="RaR-6C-UTg" firstAttribute="top" secondItem="Xnb-HH-rbA" secondAttribute="bottom" id="UzV-ic-crq"/>
+                            <constraint firstItem="Xnb-HH-rbA" firstAttribute="leading" secondItem="075-0g-Hej" secondAttribute="leadingMargin" id="lo3-LS-Mu1"/>
+                            <constraint firstItem="Xnb-HH-rbA" firstAttribute="top" secondItem="2w9-is-O6r" secondAttribute="bottom" id="v53-kz-zsO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Task Info" id="ebK-oe-4Qv">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dZg-NQ-9kX">
+                            <connections>
+                                <action selector="clickCancelButton:" destination="dle-yh-Nci" id="KEW-wT-9a6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7X0-Qc-0n1">
+                            <connections>
+                                <action selector="clickSaveButton:" destination="dle-yh-Nci" id="6cc-Cv-mc2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textTaskInfo" destination="Xnb-HH-rbA" id="tdN-t7-PO1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VVc-Lw-VLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831" y="504"/>
         </scene>
         <!--Title-->
         <scene sceneID="SQJ-bJ-Wce">
