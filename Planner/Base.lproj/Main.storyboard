@@ -110,7 +110,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Irw-BN-PVn">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="KOY-BS-TM2"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gwZ-di-aHT"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gwZ-di-aHT">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="addTask" id="0jG-6S-3RZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="editTask" id="aPD-gU-vAW"/>
@@ -146,8 +150,11 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7Fe-5w-5Xz">
                                                     <rect key="frame" x="10" y="5" width="323" height="49.5"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="editTaskName:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="fjJ-Lo-mm5"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -259,12 +266,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-KE-RU3">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-KE-RU3">
                                                     <rect key="frame" x="10" y="5" width="323" height="109.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <gestureRecognizers/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
                                                         <outletCollection property="gestureRecognizers" destination="dsf-Vt-gGD" appends="YES" id="ilY-ZT-xNK"/>
@@ -608,4 +615,7 @@
         <image name="check_gray" width="30" height="30"/>
         <image name="clear" width="15" height="15"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0jG-6S-3RZ"/>
+    </inferredMetricsTieBreakers>
 </document>

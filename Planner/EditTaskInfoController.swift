@@ -22,6 +22,8 @@ class EditTaskInfoController: UIViewController {
         if let taskInfo = taskInfo{
             textTaskInfo.text = taskInfo
         }
+        
+        textTaskInfo.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }

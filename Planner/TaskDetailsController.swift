@@ -36,6 +36,9 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var buttonCompleteTask: UIButton!
     
+    var textTaskName: UITextField!
+    var textViewTaskInfo : UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +51,9 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             taskPriority = task.priority
             taskCategory = task.category
             taskDeadline = task.deadline
+        }else{
+            taskName = "New task"
+            taskInfo = ""
         }
         
         buttonDeleteTask.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)        
@@ -86,12 +92,17 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func clickSave(_ sender: UIBarButtonItem) {
         
+        if let name = textTaskName.text, !textTaskName.text!.isEmpty{
+            taskName = name
+        }else{
+            taskName = "New task"
+        }
+        
         task.name = taskName
         task.category = taskCategory
         task.priority = taskPriority
         task.deadline = taskDeadline
         task.info = taskInfo
-        
         
         delegate.done(source: self, data: task)
         
@@ -133,6 +144,11 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
+    @IBAction func editTaskName(_ sender: UITextField) {
+        taskName = sender.text
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
@@ -160,6 +176,12 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             cell.textTaskName.text = taskName
+            
+            if (cell.textTaskName.text?.isEmpty)!{
+                cell.textTaskName.becomeFirstResponder()
+            }
+            
+            textTaskName = cell.textTaskName
             
             return cell
         case taskCategorySection:
@@ -229,6 +251,8 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.textTaskInfo.text = taskInfo
             
+            textViewTaskInfo = cell.textTaskInfo
+            
             
             return cell
             
@@ -289,7 +313,7 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             
         case "EditTaskInfo":
             if let controller = segue.destination as? EditTaskInfoController{
-                controller.taskInfo = taskInfo
+                controller.taskInfo = (taskInfo ?? "")
                 controller.delegate = self
             }
         default:
@@ -316,7 +340,7 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         
         if source is EditTaskInfoController{
             taskInfo = data as? String
-            tableViewTaskDetails.reloadRows(at: [IndexPath(row: 0, section: taskInfoSection)], with: .fade)
+            textViewTaskInfo.text  = taskInfo
         }
         
         

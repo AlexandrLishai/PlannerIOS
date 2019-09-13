@@ -17,6 +17,8 @@ class TaskListController: UITableViewController, ActionResultDelegate {
     let categoryDAO = CategoryDAOImpl.current
     let priorityDAO = PriorityDAOImpl.current
     
+    let taskListSection = 0
+    
     
     //@IBOutlet var tableView: UITableView!
     
@@ -66,7 +68,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         let task = taskDAO.items[indexPath.row]
         
         cell.labelTaskName.text = task.name
-        cell.labelTaskCategory.text = (task.category?.name ?? "")
+        cell.labelTaskCategory.text = (task.category?.name ?? "not choosen")
         if let deadLine = task.deadline{
             cell.labelTaskDeadline.text = dateFormatter.string(from: deadLine as Date)
         }else {
@@ -207,8 +209,17 @@ class TaskListController: UITableViewController, ActionResultDelegate {
                 fatalError("error")
             }
             
-            controller.title = "Edit"
+            controller.title = "Edit Task"
             controller.task = selectedTask
+            controller.delegate = self
+        case "addTask":
+            
+            guard let controller = segue.destination as? TaskDetailsController else{
+                fatalError("error")
+            }
+            
+            controller.title = "New Task"
+            controller.task = Task(context: taskDAO.context)
             controller.delegate = self
         default:
             return
@@ -224,6 +235,14 @@ class TaskListController: UITableViewController, ActionResultDelegate {
             if let selectedIndexPath = tableView.indexPathForSelectedRow{
                 taskDAO.save()
                 tableView.reloadRows(at: [selectedIndexPath], with: .fade)
+            }else{
+                let task = data as! Task
+                
+                taskDAO.addOrUpdate(task)
+                
+                let indexPath = IndexPath(row: taskDAO.items.count-1, section: taskListSection)
+                
+                tableView.insertRows(at: [indexPath], with: .top)
             }
         }
     }
