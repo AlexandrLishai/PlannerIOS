@@ -26,8 +26,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOf-9o-TJM">
-                                            <rect key="frame" x="308" y="14" width="60" height="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOf-9o-TJM">
+                                            <rect key="frame" x="265" y="3" width="60" height="53.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="cf5-PE-0Ct"/>
                                             </constraints>
@@ -62,6 +62,19 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1WT-Z1-7WM" customClass="AreaTabButton" customModule="Planner" customModuleProvider="target">
+                                            <rect key="frame" x="335" y="14" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="lXc-OT-C5N"/>
+                                                <constraint firstAttribute="height" constant="30" id="x3L-sA-vkF"/>
+                                            </constraints>
+                                            <state key="normal" image="check_gray">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="clickCompleteButton:" destination="c9C-AU-1Ct" eventType="touchUpInside" id="pmN-6O-d3S"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="Jbs-B7-GNN" secondAttribute="bottom" id="3RB-tn-m90"/>
@@ -69,21 +82,24 @@
                                         <constraint firstItem="crb-cw-FRd" firstAttribute="top" secondItem="1Gh-MC-tDS" secondAttribute="bottom" constant="3" id="GeH-ZE-xUb"/>
                                         <constraint firstItem="1Gh-MC-tDS" firstAttribute="leading" secondItem="Jbs-B7-GNN" secondAttribute="trailing" constant="10" id="Hnw-zx-xJX"/>
                                         <constraint firstItem="1Gh-MC-tDS" firstAttribute="top" secondItem="2mE-EC-4ED" secondAttribute="topMargin" constant="3" id="InY-Pz-6ft"/>
+                                        <constraint firstItem="1WT-Z1-7WM" firstAttribute="leading" secondItem="aOf-9o-TJM" secondAttribute="trailing" constant="10" id="KuA-us-Jsc"/>
                                         <constraint firstItem="aOf-9o-TJM" firstAttribute="top" secondItem="1Gh-MC-tDS" secondAttribute="top" id="LG0-W7-9vB"/>
                                         <constraint firstItem="1Gh-MC-tDS" firstAttribute="trailing" secondItem="aOf-9o-TJM" secondAttribute="leading" constant="-5" id="MaC-3a-sWh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1WT-Z1-7WM" secondAttribute="trailing" constant="10" id="QYX-z4-Vfz"/>
                                         <constraint firstItem="crb-cw-FRd" firstAttribute="leading" secondItem="1Gh-MC-tDS" secondAttribute="leading" id="R5Y-Ug-FAG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="aOf-9o-TJM" secondAttribute="trailing" constant="5" id="WGX-4T-kHD"/>
+                                        <constraint firstItem="1WT-Z1-7WM" firstAttribute="centerY" secondItem="2mE-EC-4ED" secondAttribute="centerY" id="b2U-hN-vCD"/>
                                         <constraint firstItem="Jbs-B7-GNN" firstAttribute="leading" secondItem="2mE-EC-4ED" secondAttribute="leading" id="sjT-bg-OTb"/>
                                         <constraint firstItem="crb-cw-FRd" firstAttribute="trailing" secondItem="1Gh-MC-tDS" secondAttribute="trailing" id="tH3-R9-Gbk"/>
+                                        <constraint firstItem="aOf-9o-TJM" firstAttribute="centerY" secondItem="2mE-EC-4ED" secondAttribute="centerY" id="wQG-fW-k7f"/>
                                     </constraints>
                                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buttonCompleteTask" destination="1WT-Z1-7WM" id="Kes-Ph-oka"/>
                                     <outlet property="labelTaskCategory" destination="crb-cw-FRd" id="fzD-CX-wdx"/>
                                     <outlet property="labelTaskDeadline" destination="aOf-9o-TJM" id="ocP-XZ-unQ"/>
                                     <outlet property="labelTaskName" destination="1Gh-MC-tDS" id="vxG-do-7y4"/>
                                     <outlet property="labelTaskPriority" destination="Jbs-B7-GNN" id="C55-A8-a3o"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="editTask" id="YgA-g8-3T5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -96,6 +112,9 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" id="KOY-BS-TM2"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gwZ-di-aHT"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="editTask" id="aPD-gU-vAW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNF-aN-MOj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -286,6 +305,9 @@
                                         <state key="normal" title="Complete">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickCompleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TXs-tp-gGZ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

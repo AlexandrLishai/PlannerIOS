@@ -111,6 +111,18 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         }
         
         // Configure the cell...
+        if task.completed{
+            cell.labelTaskName.textColor = UIColor.lightGray
+            cell.labelTaskCategory.textColor = UIColor.lightGray
+            cell.labelTaskDeadline.textColor = UIColor.lightGray
+            cell.labelTaskPriority.backgroundColor = UIColor.lightGray
+            cell.selectionStyle = .none
+            cell.buttonCompleteTask.setImage(UIImage(named: "check_green"), for: .normal)
+        }else{
+            cell.selectionStyle = .default
+            cell.buttonCompleteTask.setImage(UIImage(named: "check_gray"), for: .normal)
+            cell.labelTaskName.textColor = UIColor.darkGray
+        }
 
         return cell
     }
@@ -118,6 +130,15 @@ class TaskListController: UITableViewController, ActionResultDelegate {
     // set height row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    // click on row
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if taskDAO.items[indexPath.row].completed == true{
+            return
+        }
+        
+        performSegue(withIdentifier: "editTask", sender: tableView.cellForRow(at: indexPath))
     }
     
     
@@ -215,6 +236,26 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         if segue.identifier == "DeleteTaskFromDetails" , let selectedIndexPath = tableView.indexPathForSelectedRow{
             deleteTask(selectedIndexPath)
         }
+    }
+    
+    
+    @IBAction func clickCompleteButton(_ sender: UIButton) {
+        
+        let viewPosition = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: viewPosition)!
+        
+        guard (tableView.cellForRow(at: indexPath) as? TaskListViewCell) != nil else{
+            fatalError("error")
+        }
+        
+        let task = taskDAO.items[indexPath.row]
+        
+        task.completed = !task.completed
+        
+        taskDAO.addOrUpdate(task)
+        
+        tableView.reloadRows(at: [indexPath], with: .fade)
+        
     }
     
     func deleteTask(_ indexPath:IndexPath){

@@ -105,6 +105,34 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         tableViewTaskDetails.reloadRows(at: [IndexPath(row: 0, section: taskDeadlineSection)], with: .fade)
     }
     
+    
+    
+    @IBAction func clickCompleteButton(_ sender: UIButton) {
+        
+        let dialogMessage = UIAlertController(title: "Warning", message: "Complete task?" , preferredStyle: .actionSheet)
+        
+        let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+        
+            self.task.completed = !self.task.completed
+            self.taskDAO.addOrUpdate(self.task)
+            
+            self.delegate.done(source: self, data: self.task)
+            
+            self.navigationController?.popViewController(animated: true)
+        
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {(action)  -> Void in})
+        
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
+        
+        
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
