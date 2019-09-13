@@ -278,7 +278,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="y7i-BE-fUB" kind="unwind" identifier="DeleteTaskFromDetails" unwindAction="deleteTaskActionWithSegue:" id="9Gn-0u-HzV"/>
+                                            <action selector="clickDeleteTaskButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D3b-Th-mlA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-Bg-YFu">
@@ -320,6 +320,7 @@
                         <outlet property="buttonCompleteTask" destination="SBw-Bg-YFu" id="amu-jo-0f4"/>
                         <outlet property="buttonDeleteTask" destination="uHl-MU-MNH" id="ay9-FY-eWy"/>
                         <outlet property="tableViewTaskDetails" destination="tPW-3i-KrP" id="oXa-13-i3H"/>
+                        <segue destination="y7i-BE-fUB" kind="unwind" identifier="DeleteTaskFromDetails" unwindAction="deleteTaskActionWithSegue:" id="Ggf-CJ-zd8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

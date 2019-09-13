@@ -62,7 +62,22 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: button actions 
     
+    
+    @IBAction func clickDeleteTaskButton(_ sender: UIButton) {
+        let dialogMessage = UIAlertController(title: "Warning", message: "Delete task?" , preferredStyle: .actionSheet)
+        
+        let ok = UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+            self.performSegue(withIdentifier: "DeleteTaskFromDetails", sender: self) })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {(action)  -> Void in})
+        
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
     
     @IBAction func clickCancel(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
