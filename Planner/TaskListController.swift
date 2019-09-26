@@ -17,10 +17,18 @@ class TaskListController: UITableViewController, ActionResultDelegate {
     let categoryDAO = CategoryDAOImpl.current
     let priorityDAO = PriorityDAOImpl.current
     
-    let taskListSection = 0
+    // sections of table
+    let quickTaskSection = 0
+    let taskListSection = 1
     
+    let sectionCount = 2
     
+    var textQuickTask:UITextField!
     //@IBOutlet var tableView: UITableView!
+    
+    var taskCount:Int{
+        return taskDAO.items.count
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,87 +59,115 @@ class TaskListController: UITableViewController, ActionResultDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return taskDAO.items.count
+        switch section {
+        case quickTaskSection:
+            return 1
+        case taskListSection:
+            return taskCount
+        default:
+            return 0
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as? TaskListViewCell else{
-            fatalError("cell error")
-        }
-
-        let task = taskDAO.items[indexPath.row]
-        
-        cell.labelTaskName.text = task.name
-        cell.labelTaskCategory.text = (task.category?.name ?? "not choosen")
-        if let deadLine = task.deadline{
-            cell.labelTaskDeadline.text = dateFormatter.string(from: deadLine as Date)
-        }else {
-            cell.labelTaskDeadline?.text = ""
-        }
-        
-        cell.labelTaskDeadline?.textColor = UIColor.lightGray
-        
-        if let dif = task.daysLeft(){
-            switch dif{
-            case 0:
-                cell.labelTaskDeadline?.text = "Today"
-            case 1:
-                cell.labelTaskDeadline?.text = "Tomorrow"
-            case _ where dif > 0:
-                cell.labelTaskDeadline?.text = "\(dif) days"
-            case _ where dif < 0:
-                cell.labelTaskDeadline?.textColor = UIColor.red
-                cell.labelTaskDeadline?.text = "\(dif) days"
-            default:
+        switch indexPath.section {
+        case quickTaskSection:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellQuickTask", for: indexPath) as? QuickTaskCell else{
+                fatalError("cell error")
+            }
+            textQuickTask = cell.textQuickTask
+            textQuickTask.placeholder = "Enter name of task"
+            return cell
+        case taskListSection:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as? TaskListViewCell else{
+                fatalError("cell error")
+            }
+            
+            let task = taskDAO.items[indexPath.row]
+            
+            cell.labelTaskName.text = task.name
+            cell.labelTaskCategory.text = (task.category?.name ?? "not choosen")
+            if let deadLine = task.deadline{
+                cell.labelTaskDeadline.text = dateFormatter.string(from: deadLine as Date)
+            }else {
                 cell.labelTaskDeadline?.text = ""
             }
-        }else{
-            cell.labelTaskDeadline?.text = ""
-        }
-        
-        if let priority = task.priority {
             
-            switch priority.index {
-            case 1:
-                cell.labelTaskPriority.backgroundColor = UIColor.green
-            case 2:
-                cell.labelTaskPriority.backgroundColor = UIColor.blue
-            case 3:
-                cell.labelTaskPriority.backgroundColor = UIColor.red
-            default:
+            cell.labelTaskDeadline?.textColor = UIColor.lightGray
+            
+            if let dif = task.daysLeft(){
+                switch dif{
+                case 0:
+                    cell.labelTaskDeadline?.text = "Today"
+                case 1:
+                    cell.labelTaskDeadline?.text = "Tomorrow"
+                case _ where dif > 0:
+                    cell.labelTaskDeadline?.text = "\(dif) days"
+                case _ where dif < 0:
+                    cell.labelTaskDeadline?.textColor = UIColor.red
+                    cell.labelTaskDeadline?.text = "\(dif) days"
+                default:
+                    cell.labelTaskDeadline?.text = ""
+                }
+            }else{
+                cell.labelTaskDeadline?.text = ""
+            }
+            
+            if let priority = task.priority {
+                
+                switch priority.index {
+                case 1:
+                    cell.labelTaskPriority.backgroundColor = UIColor.green
+                case 2:
+                    cell.labelTaskPriority.backgroundColor = UIColor.blue
+                case 3:
+                    cell.labelTaskPriority.backgroundColor = UIColor.red
+                default:
+                    cell.labelTaskPriority.backgroundColor = UIColor.white
+                }
+                
+            }else {
                 cell.labelTaskPriority.backgroundColor = UIColor.white
             }
             
-        }else {
-            cell.labelTaskPriority.backgroundColor = UIColor.white
+            // Configure the cell...
+            if task.completed{
+                cell.labelTaskName.textColor = UIColor.lightGray
+                cell.labelTaskCategory.textColor = UIColor.lightGray
+                cell.labelTaskDeadline.textColor = UIColor.lightGray
+                cell.labelTaskPriority.backgroundColor = UIColor.lightGray
+                cell.selectionStyle = .none
+                cell.buttonCompleteTask.setImage(UIImage(named: "check_green"), for: .normal)
+            }else{
+                cell.selectionStyle = .default
+                cell.buttonCompleteTask.setImage(UIImage(named: "check_gray"), for: .normal)
+                cell.labelTaskName.textColor = UIColor.darkGray
+            }
+            
+            return cell
+            
+            
+        default:
+            return UITableViewCell()
         }
-        
-        // Configure the cell...
-        if task.completed{
-            cell.labelTaskName.textColor = UIColor.lightGray
-            cell.labelTaskCategory.textColor = UIColor.lightGray
-            cell.labelTaskDeadline.textColor = UIColor.lightGray
-            cell.labelTaskPriority.backgroundColor = UIColor.lightGray
-            cell.selectionStyle = .none
-            cell.buttonCompleteTask.setImage(UIImage(named: "check_green"), for: .normal)
-        }else{
-            cell.selectionStyle = .default
-            cell.buttonCompleteTask.setImage(UIImage(named: "check_gray"), for: .normal)
-            cell.labelTaskName.textColor = UIColor.darkGray
-        }
-
-        return cell
     }
     
     // set height row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        switch indexPath.section {
+        case quickTaskSection:
+            return 40
+        case taskListSection:
+            return 60
+        default:
+            return 60
+        }
     }
     
     // click on row
@@ -139,10 +175,19 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         if taskDAO.items[indexPath.row].completed == true{
             return
         }
-        
-        performSegue(withIdentifier: "editTask", sender: tableView.cellForRow(at: indexPath))
+        if indexPath.section != quickTaskSection{
+            performSegue(withIdentifier: "editTask", sender: tableView.cellForRow(at: indexPath))
+        }
     }
     
+    // can edit row
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == quickTaskSection{
+            return false
+        }
+        return true
+    }
     
     // delete row
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -237,12 +282,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
                 tableView.reloadRows(at: [selectedIndexPath], with: .fade)
             }else{
                 let task = data as! Task
-                
-                taskDAO.addOrUpdate(task)
-                
-                let indexPath = IndexPath(row: taskDAO.items.count-1, section: taskListSection)
-                
-                tableView.insertRows(at: [indexPath], with: .top)
+                createTask(task)
             }
         }
     }
@@ -277,10 +317,31 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         
     }
     
+    
+    @IBAction func quickTaskAdd(_ sender: UITextField) {
+        let task = Task(context: taskDAO.context)
+        if let name = textQuickTask.text?.trimmingCharacters(in: .whitespacesAndNewlines),!name.isEmpty{
+            task.name = name
+        }else{
+            task.name = "New task"
+        }
+        
+        createTask(task)
+        textQuickTask.text = ""
+    }
+    
     func deleteTask(_ indexPath:IndexPath){
         taskDAO.delete(taskDAO.items[indexPath.row])
         taskDAO.items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .top)
+    }
+    
+    func createTask(_ task:Task){
+        taskDAO.addOrUpdate(task)
+        
+        let indexPath = IndexPath(row: taskDAO.items.count-1, section: taskListSection)
+        
+        tableView.insertRows(at: [indexPath], with: .top)
     }
     
 }
