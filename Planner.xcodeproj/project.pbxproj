@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		916EE5EA045D8DC7EA97DCF8 /* Pods_Planner_PlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644325E0BFF263B3E372C0AA /* Pods_Planner_PlannerUITests.framework */; };
+		D8FA57FFE288CCCA1328CFA4 /* Pods_PlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132D00B61BD9C46C1CB1D1A7 /* Pods_PlannerTests.framework */; };
+		EE9221DA9F5326734019AECA /* Pods_Planner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF51759022BA7F3747556D12 /* Pods_Planner.framework */; };
 		FA17938C2317DD29002CEE61 /* TaskNameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17938B2317DD29002CEE61 /* TaskNameViewCell.swift */; };
 		FA17938E2317DE57002CEE61 /* TaskCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17938D2317DE57002CEE61 /* TaskCategoryViewCell.swift */; };
 		FA1793902317F54A002CEE61 /* TaskPriorityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA17938F2317F54A002CEE61 /* TaskPriorityViewCell.swift */; };
@@ -27,6 +30,8 @@
 		FA5C86E22319587900854238 /* PriorityListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C86E12319587900854238 /* PriorityListController.swift */; };
 		FA5CFC7423057C56008CF621 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CFC7323057C56008CF621 /* DateExtension.swift */; };
 		FA5CFC7623057E0A008CF621 /* TaskExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CFC7523057E0A008CF621 /* TaskExtension.swift */; };
+		FA60EB46233E2E2C00DA2A6A /* GCCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA60EB45233E2E2C00DA2A6A /* GCCalendar.framework */; };
+		FA60EB48233E409400DA2A6A /* DateTimePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60EB47233E409400DA2A6A /* DateTimePickerController.swift */; };
 		FA651D2F232B860C008546ED /* EditTaskInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA651D2E232B860C008546ED /* EditTaskInfoController.swift */; };
 		FA79DB982327AAEC00337796 /* AreaTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79DB972327AAEC00337796 /* AreaTabButton.swift */; };
 		FA85E52022FD4C1F00589C31 /* TaskListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85E51F22FD4C1F00589C31 /* TaskListViewCell.swift */; };
@@ -59,6 +64,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0715DD905BE69A9529D3C42D /* Pods-Planner-PlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planner-PlannerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Planner-PlannerUITests/Pods-Planner-PlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		132D00B61BD9C46C1CB1D1A7 /* Pods_PlannerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlannerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		644325E0BFF263B3E372C0AA /* Pods_Planner_PlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Planner_PlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E537598E99F80F647131C14 /* Pods-PlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannerTests.release.xcconfig"; path = "Target Support Files/Pods-PlannerTests/Pods-PlannerTests.release.xcconfig"; sourceTree = "<group>"; };
+		85DB71CC018D2279A3074C33 /* Pods-Planner-PlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planner-PlannerUITests.release.xcconfig"; path = "Target Support Files/Pods-Planner-PlannerUITests/Pods-Planner-PlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9644F50512E9678EBF9B4AF9 /* Pods-Planner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planner.debug.xcconfig"; path = "Target Support Files/Pods-Planner/Pods-Planner.debug.xcconfig"; sourceTree = "<group>"; };
+		AF51759022BA7F3747556D12 /* Pods_Planner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Planner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF28F2FA0B574817DBACC6EB /* Pods-Planner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planner.release.xcconfig"; path = "Target Support Files/Pods-Planner/Pods-Planner.release.xcconfig"; sourceTree = "<group>"; };
+		E1320B3F7FBDF74B2720F1D6 /* Pods-PlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlannerTests.debug.xcconfig"; path = "Target Support Files/Pods-PlannerTests/Pods-PlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA17938B2317DD29002CEE61 /* TaskNameViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNameViewCell.swift; sourceTree = "<group>"; };
 		FA17938D2317DE57002CEE61 /* TaskCategoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCategoryViewCell.swift; sourceTree = "<group>"; };
 		FA17938F2317F54A002CEE61 /* TaskPriorityViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPriorityViewCell.swift; sourceTree = "<group>"; };
@@ -85,6 +99,8 @@
 		FA5C86E12319587900854238 /* PriorityListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityListController.swift; sourceTree = "<group>"; };
 		FA5CFC7323057C56008CF621 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		FA5CFC7523057E0A008CF621 /* TaskExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskExtension.swift; sourceTree = "<group>"; };
+		FA60EB45233E2E2C00DA2A6A /* GCCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GCCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA60EB47233E409400DA2A6A /* DateTimePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerController.swift; sourceTree = "<group>"; };
 		FA651D2E232B860C008546ED /* EditTaskInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskInfoController.swift; sourceTree = "<group>"; };
 		FA79DB972327AAEC00337796 /* AreaTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaTabButton.swift; sourceTree = "<group>"; };
 		FA85E51F22FD4C1F00589C31 /* TaskListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewCell.swift; sourceTree = "<group>"; };
@@ -104,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA60EB46233E2E2C00DA2A6A /* GCCalendar.framework in Frameworks */,
+				EE9221DA9F5326734019AECA /* Pods_Planner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8FA57FFE288CCCA1328CFA4 /* Pods_PlannerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,12 +137,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916EE5EA045D8DC7EA97DCF8 /* Pods_Planner_PlannerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		369BF26856BA49A50A3295B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA60EB45233E2E2C00DA2A6A /* GCCalendar.framework */,
+				AF51759022BA7F3747556D12 /* Pods_Planner.framework */,
+				644325E0BFF263B3E372C0AA /* Pods_Planner_PlannerUITests.framework */,
+				132D00B61BD9C46C1CB1D1A7 /* Pods_PlannerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC1E0E48A5176E5DDE274A61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9644F50512E9678EBF9B4AF9 /* Pods-Planner.debug.xcconfig */,
+				CF28F2FA0B574817DBACC6EB /* Pods-Planner.release.xcconfig */,
+				0715DD905BE69A9529D3C42D /* Pods-Planner-PlannerUITests.debug.xcconfig */,
+				85DB71CC018D2279A3074C33 /* Pods-Planner-PlannerUITests.release.xcconfig */,
+				E1320B3F7FBDF74B2720F1D6 /* Pods-PlannerTests.debug.xcconfig */,
+				6E537598E99F80F647131C14 /* Pods-PlannerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FA17939523181CD9002CEE61 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +183,7 @@
 				FA253A8422FC2D8400544F76 /* List */,
 				FA437E1222F99877003F00D1 /* TaskDetailsController.swift */,
 				FA651D2E232B860C008546ED /* EditTaskInfoController.swift */,
+				FA60EB47233E409400DA2A6A /* DateTimePickerController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -178,6 +223,8 @@
 				FA437E2422F99878003F00D1 /* PlannerTests */,
 				FA437E2F22F99878003F00D1 /* PlannerUITests */,
 				FA437E0E22F99877003F00D1 /* Products */,
+				EC1E0E48A5176E5DDE274A61 /* Pods */,
+				369BF26856BA49A50A3295B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -287,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA437E3522F99878003F00D1 /* Build configuration list for PBXNativeTarget "Planner" */;
 			buildPhases = (
+				94E978E3629261876C3BE2EF /* [CP] Check Pods Manifest.lock */,
 				FA437E0922F99877003F00D1 /* Sources */,
 				FA437E0A22F99877003F00D1 /* Frameworks */,
 				FA437E0B22F99877003F00D1 /* Resources */,
+				CBD844930FA98EA552D690F8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,6 +353,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA437E3822F99878003F00D1 /* Build configuration list for PBXNativeTarget "PlannerTests" */;
 			buildPhases = (
+				222B654E067D494D8CF87DB3 /* [CP] Check Pods Manifest.lock */,
 				FA437E1D22F99878003F00D1 /* Sources */,
 				FA437E1E22F99878003F00D1 /* Frameworks */,
 				FA437E1F22F99878003F00D1 /* Resources */,
@@ -322,9 +372,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA437E3B22F99878003F00D1 /* Build configuration list for PBXNativeTarget "PlannerUITests" */;
 			buildPhases = (
+				D46E11546A7501028AD72388 /* [CP] Check Pods Manifest.lock */,
 				FA437E2822F99878003F00D1 /* Sources */,
 				FA437E2922F99878003F00D1 /* Frameworks */,
 				FA437E2A22F99878003F00D1 /* Resources */,
+				F68C55D8E0831EAE343E4078 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,6 +461,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		222B654E067D494D8CF87DB3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlannerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94E978E3629261876C3BE2EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Planner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBD844930FA98EA552D690F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Planner/Pods-Planner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GCCalendar/GCCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Planner/Pods-Planner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D46E11546A7501028AD72388 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Planner-PlannerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F68C55D8E0831EAE343E4078 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Planner-PlannerUITests/Pods-Planner-PlannerUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GCCalendar/GCCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Planner-PlannerUITests/Pods-Planner-PlannerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA437E0922F99877003F00D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -418,6 +563,7 @@
 				FA5CFC7423057C56008CF621 /* DateExtension.swift in Sources */,
 				FA79DB982327AAEC00337796 /* AreaTabButton.swift in Sources */,
 				FA253A8A22FC508300544F76 /* TaskObject.swift in Sources */,
+				FA60EB48233E409400DA2A6A /* DateTimePickerController.swift in Sources */,
 				FA8EB41322FD6BDB00BA867E /* Planner.xcdatamodeld in Sources */,
 				FA1793922317F56A002CEE61 /* TaskDeadlineViewCell.swift in Sources */,
 				FA23B610233CCA5200A53026 /* QuickTaskCell.swift in Sources */,
@@ -592,6 +738,7 @@
 		};
 		FA437E3622F99878003F00D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9644F50512E9678EBF9B4AF9 /* Pods-Planner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Planner/Info.plist;
@@ -604,6 +751,7 @@
 		};
 		FA437E3722F99878003F00D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF28F2FA0B574817DBACC6EB /* Pods-Planner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Planner/Info.plist;
@@ -616,6 +764,7 @@
 		};
 		FA437E3922F99878003F00D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1320B3F7FBDF74B2720F1D6 /* Pods-PlannerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -630,6 +779,7 @@
 		};
 		FA437E3A22F99878003F00D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E537598E99F80F647131C14 /* Pods-PlannerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -644,6 +794,7 @@
 		};
 		FA437E3C22F99878003F00D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0715DD905BE69A9529D3C42D /* Pods-Planner-PlannerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = PlannerUITests/Info.plist;
@@ -657,6 +808,7 @@
 		};
 		FA437E3D22F99878003F00D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85DB71CC018D2279A3074C33 /* Pods-Planner-PlannerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = PlannerUITests/Info.plist;

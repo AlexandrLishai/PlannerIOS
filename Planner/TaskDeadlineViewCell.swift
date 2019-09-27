@@ -10,7 +10,8 @@ import UIKit
 
 class TaskDeadlineViewCell: UITableViewCell {
 
-    @IBOutlet weak var labelTaskDeadline: UILabel!
+    
+    @IBOutlet weak var buttonDateTimePicker: UIButton!
     
     @IBOutlet weak var buttonClearDeadline: AreaTabButton!
     override func awakeFromNib() {

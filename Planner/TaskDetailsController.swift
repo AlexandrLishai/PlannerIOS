@@ -38,6 +38,7 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
     
     var textTaskName: UITextField!
     var textViewTaskInfo : UITextView!
+    var buttonDateTimePicker: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +71,9 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK: button actions 
     
+    
+    @IBAction func clickDateTimePicker(_ sender: UIButton) {
+    }
     
     @IBAction func clickDeleteTaskButton(_ sender: UIButton) {
         let dialogMessage = UIAlertController(title: "Warning", message: "Delete task?" , preferredStyle: .actionSheet)
@@ -238,7 +242,8 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             
-            cell.labelTaskDeadline.text = value
+            cell.buttonDateTimePicker.setTitle(value, for: .normal)
+            buttonDateTimePicker = cell.buttonDateTimePicker
             
             
             return cell
@@ -316,6 +321,11 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
                 controller.taskInfo = (taskInfo ?? "")
                 controller.delegate = self
             }
+        case "selectDateTime":
+            if let controller = segue.destination as? DateTimePickerController{
+                controller.datetime = taskDeadline as? Date
+                controller.delegate = self
+            }
         default:
             return
         }
@@ -341,6 +351,11 @@ class TaskDetailsController: UIViewController, UITableViewDelegate, UITableViewD
         if source is EditTaskInfoController{
             taskInfo = data as? String
             textViewTaskInfo.text  = taskInfo
+        }
+        
+        if source is DateTimePickerController{
+            taskDeadline = data as? NSDate
+            buttonDateTimePicker.setTitle(dateFormatter.string(for: taskDeadline! as Date), for: .normal)
         }
         
         
