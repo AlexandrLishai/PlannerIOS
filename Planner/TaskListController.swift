@@ -26,6 +26,8 @@ class TaskListController: UITableViewController, ActionResultDelegate {
     var textQuickTask:UITextField!
     //@IBOutlet var tableView: UITableView!
     
+    var searchController:UISearchController! // search area
+    
     var taskCount:Int{
         return taskDAO.items.count
     }
@@ -36,7 +38,10 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         dateFormatter.timeStyle = .none
         dateFormatter.dateStyle = .short
         
+        setupSearchController()
+        
         //taskDAO.initData()
+        //taskDAO.search("a")
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -82,7 +87,7 @@ class TaskListController: UITableViewController, ActionResultDelegate {
                 fatalError("cell error")
             }
             textQuickTask = cell.textQuickTask
-            textQuickTask.placeholder = "Enter name of task"
+            textQuickTask.placeholder = "Enter name of new task"
             return cell
         case taskListSection:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as? TaskListViewCell else{
@@ -342,6 +347,47 @@ class TaskListController: UITableViewController, ActionResultDelegate {
         let indexPath = IndexPath(row: taskDAO.items.count-1, section: taskListSection)
         
         tableView.insertRows(at: [indexPath], with: .top)
+    }
+    
+}
+
+extension TaskListController: UISearchBarDelegate{
+    
+    func setupSearchController(){
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search by name"
+        searchController.searchBar.backgroundColor = .white
+        
+        definesPresentationContext = true
+        
+        //searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        
+        searchController.searchBar.showsScopeBar = false
+        
+        if #available(iOS 11.0, *){
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }else{
+            tableView.tableHeaderView = searchController.searchBar
+        }
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if !(searchController.searchBar.text?.isEmpty)!{
+            taskDAO.search(searchController.searchBar.text!)
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        taskDAO.getAll()
+        tableView.reloadData()
     }
     
 }

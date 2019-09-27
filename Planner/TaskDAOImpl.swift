@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class TaskDAOImpl: Crud{
+class TaskDAOImpl: TaskDAO{
     
     typealias Item = Task
     
@@ -119,6 +119,24 @@ class TaskDAOImpl: Crud{
         }
         
         return task // ╨▓╨╛╨╖╨▓╤Ç╨░╤ë╨░╨╡╨╝ ╤ü╨╛╨╖╨┤╨░╨╜╨╜╤â╤Ä ╨╖╨░╨┤╨░╤ç╤â
+    }
+    
+    func search(_ text:String)->[Item]{
+        let fetchRequest:NSFetchRequest<Item> = Item.fetchRequest()
+        
+        var params = [Any]()
+        let sql = "name CONTAINS[c] %@"
+        params.append(text)
+        let predicate = NSPredicate(format: sql, argumentArray: params)
+        fetchRequest.predicate = predicate
+        
+        do {
+            items = try context.fetch(fetchRequest)
+        }catch {
+            fatalError("Error fetching")
+        }
+        
+        return items
     }
     
 }
